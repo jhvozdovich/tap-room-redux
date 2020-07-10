@@ -14,7 +14,7 @@ function PotionList(props) {
     <React.Fragment>
       <h4>{instructionText}</h4>
       <div className="potion-list">
-        {props.potionList.map((potion) =>
+        {Object.values(props.potionList).map((potion) =>
           <Potion
             whenPotionClicked={props.onPotionSelection}
             name={potion.name}
@@ -32,7 +32,7 @@ function PotionList(props) {
 }
 
 PotionList.propTypes = {
-  potionList: PropTypes.array,
+  potionList: PropTypes.object,
   onPotionSelection: PropTypes.func
 }
 

@@ -7,190 +7,115 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import * as a from "./../actions/index"
 
-import Indigo from "../img/Indigo.gif";
-import Purple from "../img/Purple.gif";
-import Pink from "../img/Pink.gif";
-import LightBlue from "../img/LightBlue.gif";
-import Lavendar from "../img/Lavendar.gif";
-import PaleGreen from "../img/PaleGreen.gif";
+function PotionControl(props) {
+  const { creatingFormVisible, potionList, selectedPotionVisible, updatingFormVisible } = props;
 
-
-class PotionControl extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedPotionVisible: null,
-      potionList: [
-        {
-          name: "Potion of Regeneration",
-          price: 4,
-          duration: "0:45",
-          effect: "Restores 18 health over time",
-          stock: 10,
-          img: Purple,
-          id: "0"
-        },
-        {
-          name: "Potion of Night Vision",
-          price: 6,
-          duration: "3:00",
-          effect: "Visually brightens everything to a light level of 15",
-          stock: 5,
-          img: Indigo,
-          id: "1"
-        },
-        {
-          name: "Potion of Fire Resistance",
-          price: 8,
-          duration: "3:00",
-          effect: "Gives immunity to damage from fire, lava, magma blocks, campfires, and blazes' ranged attacks.",
-          stock: 15,
-          img: Pink,
-          id: "2"
-        },
-        {
-          name: "Potion of Swiftness",
-          price: 3,
-          duration: "3:00",
-          effect: "Increases movement speed, sprinting speed, and jumping length by 20%.",
-          stock: 0,
-          img: LightBlue,
-          id: "3"
-        },
-        {
-          name: "Potion of Invisibility",
-          price: 10,
-          duration: "3:00",
-          effect: "Renders the player invisible.",
-          stock: 12,
-          img: Lavendar,
-          id: "4"
-        },
-        {
-          name: "Potion of Luck",
-          price: 2,
-          duration: "5:00",
-          effect: "Increases the luck attribute by 1 point.",
-          stock: 1,
-          img: PaleGreen,
-          id: "5"
-        }
-      ]
-    }
-  }
-
-  handleCreatingFormVisible = () => {
-    const { dispatch } = this.props;
+  const handleCreatingFormVisible = () => {
+    const { dispatch } = props;
     const action = a.toggleCreateForm();
     dispatch(action);
   }
 
-  handleAddingNewPotion = (newPotion) => {
-    const { dispatch } = this.props;
+  const handleAddingNewPotion = (newPotion) => {
+    const { dispatch } = props;
     const action = a.toggleCreateForm();
     dispatch(action);
-    const newPotionList = this.state.potionList.concat(newPotion);
-    this.setState({
-      potionList: newPotionList,
-    })
+    const action2 = a.addPotion(newPotion);
+    dispatch(action2);
   }
 
-  handleSelectedPotion = (id) => {
-    if (this.state.selectedPotionVisible === null) {
-      const selectedPotion = this.state.potionList.filter(potion => potion.id === id)[0];
-      this.setState({ selectedPotionVisible: selectedPotion });
-    } else {
-      this.setState({ selectedPotionVisible: null });
-    }
+  const handleSelectedPotion = (id) => {
+    const { dispatch } = props;
+    const selectedPotion = Object.values(potionList).filter(potion => potion.id === id)[0]
+    const action = a.selectPotion(selectedPotion)
+    dispatch(action);
   }
 
-  handleUpdatingFormVisible = () => {
-    const { dispatch } = this.props;
+  const handleSelectedPotionRefresh = () => {
+    const { dispatch } = props;
+    const action = a.selectPotion(null);
+    dispatch(action);
+  }
+
+  const handleUpdatingFormVisible = () => {
+    const { dispatch } = props;
     const action = a.toggleUpdateForm();
     dispatch(action);
   }
 
-  handleUpdatingPotion = (potionToUpdate) => {
-    const { dispatch } = this.props;
+  const handleUpdatingPotion = (potionToUpdate) => {
+    const { dispatch } = props;
     const action = a.toggleUpdateForm();
     dispatch(action);
-    const newPotionList = this.state.potionList
-      .filter(potion => potion.id !== this.state.selectedPotionVisible.id)
-      .concat(potionToUpdate);
-    this.setState({
-      potionList: newPotionList,
-      selectedPotionVisible: null
-    });
+    const action2 = a.addPotion(potionToUpdate);
+    dispatch(action2);
+    handleSelectedPotionRefresh();
   }
 
-  handleDeletingPotion = (id) => {
-    const newPotionList = this.state.potionList.filter(potion => potion.id !== id);
-    this.setState({
-      potionList: newPotionList,
-      selectedPotionVisible: null
-    })
+  const handleDeletingPotion = (id) => {
+    const { dispatch } = props;
+    const action = a.deletePotion(id);
+    dispatch(action);
+    handleSelectedPotionRefresh()
   }
 
-  handleBuyingPotion = (id) => {
-    const purchasedPotion = this.state.potionList.filter(potion => potion.id === id)[0];
-    if (purchasedPotion.stock > 0) {
-      purchasedPotion.stock -= 1;
-      const updatedPotionList = this.state.potionList.filter(potion => potion.id !== this.state.selectedPotionVisible.id).concat(purchasedPotion);
-      this.setState({
-        potionList: updatedPotionList
-      });
-    }
+  // const handleBuyingPotion = (id) => {
+  //   const purchasedPotion = props.potionList.filter(potion => potion.id === id)[0];
+  //   if (purchasedPotion.stock > 0) {
+  //     purchasedPotion.stock -= 1;
+  //     const updatedPotionList = props.potionList.filter(potion => potion.id !== props.selectedPotionVisible.id).concat(purchasedPotion);
+  //     const { dispatch } = props;
+  //     const action = a.addPotion();
+  //     dispatch(action);
+  // }
+
+  // handleRestockingPotion = (id) => {
+  //   const restockedPotion = state.potionList.filter(potion => potion.id === id)[0];
+  //   if (isNaN(restockedPotion.stock)) {
+  //     restockedPotion.stock = 10;
+  //   } else {
+  //     restockedPotion.stock += 10;
+  //   }
+  //   const updatedPotionList = state.potionList.filter(potion => potion.id !== state.selectedPotionVisible.id).concat(restockedPotion);
+  //   setState({
+  //     potionList: updatedPotionList
+  //   });
+  // }
+
+  let currentlyVisibleState = null;
+  let navButton = null;
+  if (updatingFormVisible) {
+    currentlyVisibleState = <EditPotionForm
+      potion={selectedPotionVisible}
+      onEditPotion={handleUpdatingPotion} />
+    navButton = <button onClick={handleUpdatingFormVisible}>Back to Potion</button>
+  } else if (selectedPotionVisible !== null) {
+    currentlyVisibleState = <PotionDetail
+      potion={selectedPotionVisible}
+      onClickingUpdate={handleUpdatingFormVisible}
+      onClickingDelete={handleDeletingPotion} />
+    // onClickingBuy={handleBuyingPotion}
+    // onClickingRestock={handleRestockingPotion} />
+    navButton = <button onClick={handleSelectedPotionRefresh}>Back to List</button>
+  } else if (creatingFormVisible) {
+    currentlyVisibleState = <NewPotionForm onNewPotionCreation={handleAddingNewPotion} />
+    navButton = <button onClick={handleCreatingFormVisible}>Back to List</button>
+  } else {
+    currentlyVisibleState = <PotionList
+      potionList={potionList}
+      onPotionSelection={handleSelectedPotion} />
+    navButton = <button onClick={handleCreatingFormVisible}>Add Potion</button>
   }
 
-  handleRestockingPotion = (id) => {
-    const restockedPotion = this.state.potionList.filter(potion => potion.id === id)[0];
-    if (isNaN(restockedPotion.stock)) {
-      restockedPotion.stock = 10;
-    } else {
-      restockedPotion.stock += 10;
-    }
-    const updatedPotionList = this.state.potionList.filter(potion => potion.id !== this.state.selectedPotionVisible.id).concat(restockedPotion);
-    this.setState({
-      potionList: updatedPotionList
-    });
-  }
 
-
-  render() {
-    let currentlyVisibleState = null;
-    let navButton = null;
-    if (this.props.updatingFormVisible) {
-      currentlyVisibleState = <EditPotionForm
-        potion={this.state.selectedPotionVisible}
-        onEditPotion={this.handleUpdatingPotion} />
-      navButton = <button onClick={this.handleUpdatingFormVisible}>Back to Potion</button>
-    } else if (this.state.selectedPotionVisible !== null) {
-      currentlyVisibleState = <PotionDetail
-        potion={this.state.selectedPotionVisible}
-        onClickingUpdate={this.handleUpdatingFormVisible}
-        onClickingDelete={this.handleDeletingPotion}
-        onClickingBuy={this.handleBuyingPotion}
-        onClickingRestock={this.handleRestockingPotion} />
-      navButton = <button onClick={this.handleSelectedPotion}>Back to List</button>
-    } else if (this.props.creatingFormVisible) {
-      currentlyVisibleState = <NewPotionForm onNewPotionCreation={this.handleAddingNewPotion} />
-      navButton = <button onClick={this.handleCreatingFormVisible}>Back to List</button>
-    } else {
-      currentlyVisibleState = <PotionList
-        potionList={this.state.potionList}
-        onPotionSelection={this.handleSelectedPotion} />
-      navButton = <button onClick={this.handleCreatingFormVisible}>Add Potion</button>
-    }
-
-
-    return (
-      <React.Fragment>
-        {currentlyVisibleState}
-        {navButton}
-      </React.Fragment>
-    )
-  }
+  return (
+    <React.Fragment>
+      {currentlyVisibleState}
+      {navButton}
+    </React.Fragment>
+  )
 }
+
 
 PotionControl.propTypes = {
   creatingFormVisible: PropTypes.bool,

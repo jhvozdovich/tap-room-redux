@@ -8,7 +8,7 @@ import Lavendar from "../img/Lavendar.gif";
 import PaleGreen from "../img/PaleGreen.gif";
 
 const defaultData = {
-  0: {
+  "0": {
     name: "Potion of Regeneration",
     price: 4,
     duration: "0:45",
@@ -19,7 +19,7 @@ const defaultData = {
     key: 0,
     id: "0"
   },
-  1: {
+  "1": {
     name: "Potion of Night Vision",
     price: 6,
     duration: "3:00",
@@ -30,7 +30,7 @@ const defaultData = {
     key: 1,
     id: "1"
   },
-  2: {
+  "2": {
     name: "Potion of Fire Resistance",
     price: 8,
     duration: "3:00",
@@ -41,7 +41,7 @@ const defaultData = {
     key: 2,
     id: "2"
   },
-  3: {
+  "3": {
     name: "Potion of Swiftness",
     price: 3,
     duration: "3:00",
@@ -52,7 +52,7 @@ const defaultData = {
     key: 3,
     id: "3"
   },
-  4: {
+  "4": {
     name: "Potion of Invisibility",
     price: 10,
     duration: "3:00",
@@ -63,7 +63,7 @@ const defaultData = {
     key: 4,
     id: "4"
   },
-  5: {
+  "5": {
     name: "Potion of Luck",
     price: 2,
     duration: "5:00",
@@ -93,6 +93,12 @@ export default (state = defaultData, action) => {
           id: id
         }
       });
+
+    case c.DELETE_POTION:
+      const newState = { ...state };
+      delete newState[id];
+      return newState;
+
     default:
       return state;
   }

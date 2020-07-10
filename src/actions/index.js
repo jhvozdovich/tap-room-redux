@@ -23,3 +23,8 @@ export const addPotion = (potion) => {
     id: id
   }
 }
+
+export const deletePotion = (id) => ({
+  type: c.DELETE_POTION,
+  id
+});

@@ -11,7 +11,7 @@ import PaleGreen from "./../../img/PaleGreen.gif";
 
 describe("potionListReducer", () => {
   const defaultData = {
-    0: {
+    "0": {
       name: "Potion of Regeneration",
       price: 4,
       duration: "0:45",
@@ -22,7 +22,7 @@ describe("potionListReducer", () => {
       key: 0,
       id: "0"
     },
-    1: {
+    "1": {
       name: "Potion of Night Vision",
       price: 6,
       duration: "3:00",
@@ -33,7 +33,7 @@ describe("potionListReducer", () => {
       key: 1,
       id: "1"
     },
-    2: {
+    "2": {
       name: "Potion of Fire Resistance",
       price: 8,
       duration: "3:00",
@@ -44,7 +44,7 @@ describe("potionListReducer", () => {
       key: 2,
       id: "2"
     },
-    3: {
+    "3": {
       name: "Potion of Swiftness",
       price: 3,
       duration: "3:00",
@@ -55,7 +55,7 @@ describe("potionListReducer", () => {
       key: 3,
       id: "3"
     },
-    4: {
+    "4": {
       name: "Potion of Invisibility",
       price: 10,
       duration: "3:00",
@@ -66,7 +66,7 @@ describe("potionListReducer", () => {
       key: 4,
       id: "4"
     },
-    5: {
+    "5": {
       name: "Potion of Luck",
       price: 2,
       duration: "5:00",
@@ -138,44 +138,85 @@ describe("potionListReducer", () => {
     });
   });
 
-  test("should update potion data with new potion", () => {
-    const { name, price, duration, effect, stock, img, order, key, id } = potionData;
-    const { name2, price2, duration2, effect2, stock2, img2, order2, key2, id2 } = potionDataUpdate;
-    const currentState = {
-      [id]: {
-        name: name,
-        price: price,
-        duration: duration,
-        effect: effect,
-        stock: stock,
-        img: img,
-        order: order,
-        key: key,
-        id: id
+  // test("should update potion data with new potion", () => {
+  //   const { name, price, duration, effect, stock, img, order, key, id } = potionData;
+  //   const { name2, price2, duration2, effect2, stock2, img2, order2, key2, id2 } = potionDataUpdate;
+  //   const currentState = {
+  //     [id]: {
+  //       name: name,
+  //       price: price,
+  //       duration: duration,
+  //       effect: effect,
+  //       stock: stock,
+  //       img: img,
+  //       order: order,
+  //       key: key,
+  //       id: id
+  //     }
+  //   }
+  //   action = a.addPotion({
+  //     name: name2,
+  //     price: price2,
+  //     duration: duration2,
+  //     effect: effect2,
+  //     stock: stock2,
+  //     img: img2,
+  //     order: order2,
+  //     key: key2,
+  //     id: id2
+  //   })
+  //   expect(potionListReducer(currentState, action)).toEqual({
+  //     [id2]: {
+  //       name: name2,
+  //       price: price2,
+  //       duration: duration2,
+  //       effect: effect2,
+  //       stock: stock2,
+  //       img: img2,
+  //       order: order2,
+  //       key: key2,
+  //       id: id2
+  //     }
+  //   })
+  // })
+
+  test("should delete a potion", () => {
+    let currentState = {
+      "0": {
+        name: "Potion of Regeneration",
+        price: 4,
+        duration: "0:45",
+        effect: "Restores 18 health over time",
+        stock: 10,
+        img: Purple,
+        order: 0,
+        key: 0,
+        id: "0"
+      },
+      "1": {
+        name: "Potion of Night Vision",
+        price: 6,
+        duration: "3:00",
+        effect: "Visually brightens everything to a light level of 15",
+        stock: 5,
+        img: Indigo,
+        order: 1,
+        key: 1,
+        id: "1"
       }
     }
-    action = a.addPotion({
-      name: name2,
-      price: price2,
-      duration: duration2,
-      effect: effect2,
-      stock: stock2,
-      img: img2,
-      order: order2,
-      key: key2,
-      id: id2
-    })
+    action = a.deletePotion("1")
     expect(potionListReducer(currentState, action)).toEqual({
-      [id2]: {
-        name: name2,
-        price: price2,
-        duration: duration2,
-        effect: effect2,
-        stock: stock2,
-        img: img2,
-        order: order2,
-        key: key2,
-        id: id2
+      "0": {
+        name: "Potion of Regeneration",
+        price: 4,
+        duration: "0:45",
+        effect: "Restores 18 health over time",
+        stock: 10,
+        img: Purple,
+        order: 0,
+        key: 0,
+        id: "0"
       }
     })
   })

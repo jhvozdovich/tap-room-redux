@@ -1,10 +1,10 @@
 import * as c from "./../actions/ActionTypes";
 
-export default (state = "off", action) => {
+export default (state = null, action) => {
   const { name, price, duration, effect, stock, img, order, key, id } = action;
   switch (action.type) {
     case c.SELECT_POTION:
-      if (state === "off") {
+      if (state === null) {
         return {
           name: name,
           price: price,
@@ -17,7 +17,7 @@ export default (state = "off", action) => {
           id: id
         }
       } else {
-        return "off";
+        return null;
       }
     default:
       return state;

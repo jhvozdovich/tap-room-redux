@@ -18,7 +18,7 @@ describe("selectedPotionReducer", () => {
   }
 
   test("returns default without recognized action type", () => {
-    expect(selectedPotionReducer("off", { type: null })).toEqual("off");
+    expect(selectedPotionReducer(null, { type: null })).toEqual(null);
   });
 
   test("should select potion based on input", () => {
@@ -33,7 +33,7 @@ describe("selectedPotionReducer", () => {
       key: 0,
       id: "0"
     });
-    expect(selectedPotionReducer("off", action)).toEqual({
+    expect(selectedPotionReducer(null, action)).toEqual({
       name: "Potion of Regeneration",
       price: 4,
       duration: "0:45",
@@ -48,6 +48,6 @@ describe("selectedPotionReducer", () => {
 
   test("should toggle to null if potion is already selected", () => {
     action = a.selectPotion(currentState)
-    expect(selectedPotionReducer(currentState, action)).toEqual("off");
+    expect(selectedPotionReducer(currentState, action)).toEqual(null);
   });
 });

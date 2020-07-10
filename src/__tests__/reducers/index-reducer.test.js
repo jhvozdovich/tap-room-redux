@@ -89,7 +89,7 @@ describe("rootReducer", () => {
     expect(rootReducer({}, { type: null })).toEqual({
       creatingFormVisible: false,
       potionList: defaultData,
-      selectedPotionVisible: "off",
+      selectedPotionVisible: null,
       updatingFormVisible: false
     })
   })

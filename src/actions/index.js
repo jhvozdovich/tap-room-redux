@@ -50,3 +50,7 @@ export const selectPotion = (potion) => {
     }
   }
 }
+
+export const increaseOrder = () => ({
+  type: c.INCREASE_ORDER
+})

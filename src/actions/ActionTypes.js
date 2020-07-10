@@ -3,3 +3,4 @@ export const TOGGLE_UPDATE_FORM = "TOGGLE_UPDATE_FORM";
 export const ADD_POTION = "ADD_POTION";
 export const DELETE_POTION = "DELETE_POTION";
 export const SELECT_POTION = "SELECT_POTION";
+export const INCREASE_ORDER = "INCREASE_ORDER";

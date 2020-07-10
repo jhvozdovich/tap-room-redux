@@ -43,4 +43,11 @@ describe("crafty brew actions", () => {
     });
   });
 
+  test("deletePotion should create a DELETE_POTION action", () => {
+    expect(a.deletePotion("1")).toEqual({
+      type: c.DELETE_POTION,
+      id: "1"
+    });
+  });
+
 });

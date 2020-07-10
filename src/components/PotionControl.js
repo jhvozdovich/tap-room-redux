@@ -116,7 +116,8 @@ PotionControl.propTypes = {
   creatingFormVisible: PropTypes.bool,
   potionList: PropTypes.object,
   selectedPotionVisible: PropTypes.object,
-  updatingFormVisible: PropTypes.bool
+  updatingFormVisible: PropTypes.bool,
+  dispatch: PropTypes.func
 }
 
 const mapStateToProps = state => {

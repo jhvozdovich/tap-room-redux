@@ -38,6 +38,7 @@ Potion.propTypes = {
   name: PropTypes.string,
   price: PropTypes.number,
   stock: PropTypes.number,
+  img: PropTypes.string,
   id: PropTypes.string,
   whenPotionClicked: PropTypes.func
 }

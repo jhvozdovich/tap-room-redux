@@ -42,6 +42,7 @@ function EditPotionForm(props) {
 }
 
 EditPotionForm.propTypes = {
+  potion: PropTypes.object,
   onEditPotion: PropTypes.func
 }
 

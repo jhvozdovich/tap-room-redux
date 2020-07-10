@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function PotionDetail(props) {
-  const { potion, onClickingDelete, onClickingBuy, onClickingRestock } = props;
+  const { potion, onClickingDelete, onClickingBuy, onClickingRestock, onClickingUpdate } = props;
   let stockDisplay;
   if (potion.stock > 0) {
     stockDisplay = potion.stock;
@@ -60,7 +60,7 @@ function PotionDetail(props) {
         <button onClick={() => onClickingBuy(potion.id)}>Purchase Potion</button>
         <button onClick={() => onClickingRestock(potion.id)}>Restock Potion</button>
         <br />
-        <button onClick={props.onClickingUpdate}>Update Potion</button>
+        <button onClick={() => onClickingUpdate()}>Update Potion</button>
         <button onClick={() => onClickingDelete(potion.id)}>Delete Potion</button>
         <br />
       </div>

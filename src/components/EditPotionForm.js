@@ -28,6 +28,7 @@ function EditPotionForm(props) {
       effect: event.target.effect.value,
       stock: parseInt(event.target.stock.value),
       img: event.target.img.value,
+      order: potion.order,
       id: potion.id
     });
   }

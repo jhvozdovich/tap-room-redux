@@ -22,6 +22,7 @@ function PotionControl(props) {
     dispatch(action);
     const action2 = a.addPotion(newPotion);
     dispatch(action2);
+    handleIncreaseOrder();
   }
 
   const handleSelectedPotion = (id) => {
@@ -77,8 +78,16 @@ function PotionControl(props) {
     dispatch(action);
   }
 
+  const handleIncreaseOrder = () => {
+    const { dispatch } = props;
+    const action = a.increaseOrder();
+    dispatch(action);
+  }
+
+
   let currentlyVisibleState = null;
   let navButton = null;
+
   if (updatingFormVisible) {
     currentlyVisibleState = <EditPotionForm
       potion={selectedPotionVisible}

@@ -16,7 +16,7 @@ function NewPotionForm(props) {
         effect: event.target.effect.value,
         stock: parseInt(event.target.stock.value),
         img: event.target.img.value,
-        order: props.order + 1,
+        order: props.order,
         id: v4()
       });
     }

@@ -65,4 +65,9 @@ describe("crafty brew actions", () => {
     });
   });
 
+  test("increaseOrder should create an INCREASE_ORDER action", () => {
+    expect(a.increaseOrder()).toEqual({
+      type: c.INCREASE_ORDER
+    });
+  });
 });

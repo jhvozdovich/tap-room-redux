@@ -138,47 +138,36 @@ describe("potionListReducer", () => {
     });
   });
 
-  // test("should update potion data with new potion", () => {
-  //   const { name, price, duration, effect, stock, img, order, key, id } = potionData;
-  //   const { name2, price2, duration2, effect2, stock2, img2, order2, key2, id2 } = potionDataUpdate;
-  //   const currentState = {
-  //     [id]: {
-  //       name: name,
-  //       price: price,
-  //       duration: duration,
-  //       effect: effect,
-  //       stock: stock,
-  //       img: img,
-  //       order: order,
-  //       key: key,
-  //       id: id
-  //     }
-  //   }
-  //   action = a.addPotion({
-  //     name: name2,
-  //     price: price2,
-  //     duration: duration2,
-  //     effect: effect2,
-  //     stock: stock2,
-  //     img: img2,
-  //     order: order2,
-  //     key: key2,
-  //     id: id2
-  //   })
-  //   expect(potionListReducer(currentState, action)).toEqual({
-  //     [id2]: {
-  //       name: name2,
-  //       price: price2,
-  //       duration: duration2,
-  //       effect: effect2,
-  //       stock: stock2,
-  //       img: img2,
-  //       order: order2,
-  //       key: key2,
-  //       id: id2
-  //     }
-  //   })
-  // })
+  test("should update potion data with new potion", () => {
+    const { name, price, duration, effect, stock, img, order, key, id } = potionData;
+    const currentState = {
+      [id]: {
+        name: name,
+        price: price,
+        duration: duration,
+        effect: effect,
+        stock: stock,
+        img: img,
+        order: order,
+        key: key,
+        id: id
+      }
+    }
+    action = a.addPotion(potionDataUpdate);
+    expect(potionListReducer(currentState, action)).toEqual({
+      "6": {
+        name: "Potion of Water Breathing",
+        price: 5,
+        duration: "3:00",
+        effect: "Prevents the oxygen bar from depleting when underwater.",
+        stock: 0,
+        img: Purple,
+        order: 6,
+        key: 6,
+        id: "6"
+      }
+    })
+  })
 
   test("should delete a potion", () => {
     let currentState = {

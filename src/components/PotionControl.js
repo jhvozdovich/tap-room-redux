@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import * as a from "./../actions/index"
 
-
 import Indigo from "../img/Indigo.gif";
 import Purple from "../img/Purple.gif";
 import Pink from "../img/Pink.gif";
@@ -21,7 +20,6 @@ class PotionControl extends React.Component {
     super(props);
     this.state = {
       selectedPotionVisible: null,
-      updatingFormVisible: false,
       potionList: [
         {
           name: "Potion of Regeneration",
@@ -88,10 +86,12 @@ class PotionControl extends React.Component {
   }
 
   handleAddingNewPotion = (newPotion) => {
+    const { dispatch } = this.props;
+    const action = a.toggleCreateForm();
+    dispatch(action);
     const newPotionList = this.state.potionList.concat(newPotion);
     this.setState({
       potionList: newPotionList,
-      creatingFormVisible: false
     })
   }
 
@@ -105,18 +105,20 @@ class PotionControl extends React.Component {
   }
 
   handleUpdatingFormVisible = () => {
-    this.setState(prevState => ({
-      updatingFormVisible: !prevState.updatingFormVisible
-    }));
+    const { dispatch } = this.props;
+    const action = a.toggleUpdateForm();
+    dispatch(action);
   }
 
   handleUpdatingPotion = (potionToUpdate) => {
+    const { dispatch } = this.props;
+    const action = a.toggleUpdateForm();
+    dispatch(action);
     const newPotionList = this.state.potionList
       .filter(potion => potion.id !== this.state.selectedPotionVisible.id)
       .concat(potionToUpdate);
     this.setState({
       potionList: newPotionList,
-      updatingFormVisible: false,
       selectedPotionVisible: null
     });
   }
@@ -155,10 +157,9 @@ class PotionControl extends React.Component {
 
 
   render() {
-    console.log("CREATING FORM VISIBLE VALUE " + this.props.creatingFormVisible);
     let currentlyVisibleState = null;
     let navButton = null;
-    if (this.state.updatingFormVisible) {
+    if (this.props.updatingFormVisible) {
       currentlyVisibleState = <EditPotionForm
         potion={this.state.selectedPotionVisible}
         onEditPotion={this.handleUpdatingPotion} />

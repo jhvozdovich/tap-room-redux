@@ -97,4 +97,16 @@ describe("rootReducer", () => {
   test("initial potionListReducer matches root reducer", () => {
     expect(store.getState().potionList).toEqual(potionListReducer(undefined, { type: null }));
   })
+
+  test("initial creatingFormVisibleReducer matches root reducer", () => {
+    expect(store.getState().creatingFormVisible).toEqual(creatingFormVisibleReducer(undefined, { type: null }));
+  })
+
+  test("initial updatingFormVisibleReducer matches root reducer", () => {
+    expect(store.getState().updatingFormVisible).toEqual(updatingFormVisibleReducer(undefined, { type: null }));
+  })
+
+  test("initial selectedPotionVisibleReducer matches root reducer", () => {
+    expect(store.getState().selectedPotionVisible).toEqual(selectedPotionVisibleReducer(undefined, { type: null }));
+  })
 })

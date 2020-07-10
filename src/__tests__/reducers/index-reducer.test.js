@@ -109,4 +109,49 @@ describe("rootReducer", () => {
   test("initial selectedPotionVisibleReducer matches root reducer", () => {
     expect(store.getState().selectedPotionVisible).toEqual(selectedPotionVisibleReducer(undefined, { type: null }));
   })
+
+  test("action and initial state of potionListReducer matches root reducer", () => {
+    const action = a.addPotion({
+      name: "Potion of Regeneration",
+      price: 4,
+      duration: "0:45",
+      effect: "Restores 18 health over time",
+      stock: 10,
+      img: Purple,
+      order: 0,
+      key: 0,
+      id: "0"
+    })
+    store.dispatch(action);
+    expect(store.getState().potionList).toEqual(potionListReducer(undefined, action));
+  })
+
+  test("action and initial state of creatingFormVisibleReducer matches root reducer", () => {
+    const action = a.toggleCreateForm();
+    store.dispatch(action);
+    expect(store.getState().creatingFormVisible).toEqual(creatingFormVisibleReducer(undefined, action));
+  })
+
+  test("action and initial state of updatingFormVisibleReducer matches root reducer", () => {
+    const action = a.toggleUpdateForm();
+    store.dispatch(action);
+    expect(store.getState().updatingFormVisible).toEqual(updatingFormVisibleReducer(undefined, action));
+  })
+
+  test("action and initial state of selectedPotionVisibleReducer matches root reducer", () => {
+    const potion = {
+      name: "Potion of Regeneration",
+      price: 4,
+      duration: "0:45",
+      effect: "Restores 18 health over time",
+      stock: 10,
+      img: Purple,
+      order: 0,
+      key: 0,
+      id: "0"
+    }
+    const action = a.selectPotion(potion);
+    store.dispatch(action);
+    expect(store.getState().selectedPotionVisible).toEqual(selectedPotionVisibleReducer(undefined, action));
+  })
 })

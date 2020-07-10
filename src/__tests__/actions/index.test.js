@@ -50,4 +50,19 @@ describe("crafty brew actions", () => {
     });
   });
 
+  test("selectPotion should create a SELECT_POTION action", () => {
+    expect(a.selectPotion(potionData)).toEqual({
+      type: c.SELECT_POTION,
+      name: "Potion of Water Breathing",
+      price: 5,
+      duration: "3:00",
+      effect: "Prevents the oxygen bar from depleting when underwater.",
+      stock: 12,
+      img: Purple,
+      order: 6,
+      key: 6,
+      id: "6"
+    });
+  });
+
 });

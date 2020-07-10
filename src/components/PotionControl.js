@@ -3,6 +3,10 @@ import PotionList from "./PotionList";
 import NewPotionForm from "./NewPotionForm";
 import PotionDetail from "./PotionDetail";
 import EditPotionForm from "./EditPotionForm";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import * as a from "./../actions/index"
+
 
 import Indigo from "../img/Indigo.gif";
 import Purple from "../img/Purple.gif";
@@ -16,7 +20,6 @@ class PotionControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      creatingFormVisible: false,
       selectedPotionVisible: null,
       updatingFormVisible: false,
       potionList: [
@@ -79,9 +82,9 @@ class PotionControl extends React.Component {
   }
 
   handleCreatingFormVisible = () => {
-    this.setState(prevState => ({
-      creatingFormVisible: !prevState.creatingFormVisible
-    }));
+    const { dispatch } = this.props;
+    const action = a.toggleCreateForm();
+    dispatch(action);
   }
 
   handleAddingNewPotion = (newPotion) => {
@@ -150,7 +153,9 @@ class PotionControl extends React.Component {
     });
   }
 
+
   render() {
+    console.log("CREATING FORM VISIBLE VALUE " + this.props.creatingFormVisible);
     let currentlyVisibleState = null;
     let navButton = null;
     if (this.state.updatingFormVisible) {
@@ -166,7 +171,7 @@ class PotionControl extends React.Component {
         onClickingBuy={this.handleBuyingPotion}
         onClickingRestock={this.handleRestockingPotion} />
       navButton = <button onClick={this.handleSelectedPotion}>Back to List</button>
-    } else if (this.state.creatingFormVisible) {
+    } else if (this.props.creatingFormVisible) {
       currentlyVisibleState = <NewPotionForm onNewPotionCreation={this.handleAddingNewPotion} />
       navButton = <button onClick={this.handleCreatingFormVisible}>Back to List</button>
     } else {
@@ -186,5 +191,22 @@ class PotionControl extends React.Component {
   }
 }
 
+PotionControl.propTypes = {
+  creatingFormVisible: PropTypes.bool,
+  potionList: PropTypes.object,
+  selectedPotionVisible: PropTypes.object,
+  updatingFormVisible: PropTypes.bool
+}
+
+const mapStateToProps = state => {
+  return {
+    creatingFormVisible: state.creatingFormVisible,
+    potionList: state.potionList,
+    selectedPotionVisible: state.selectedPotionVisible,
+    updatingFormVisible: state.updatingFormVisible
+  }
+}
+
+PotionControl = connect(mapStateToProps)(PotionControl);
 
 export default PotionControl;

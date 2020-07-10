@@ -1,11 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 function PotionDetail(props) {
-  const { potion, onClickingDelete, onClickingBuy, onClickingRestock, onClickingUpdate } = props;
+  const { potion, onClickingDelete, onClickingBuy, onClickingRestock, onClickingUpdate, potionList } = props;
   let stockDisplay;
   if (potion.stock > 0) {
-    stockDisplay = potion.stock;
+    stockDisplay = potionList[potion.id].stock;
   } else {
     stockDisplay = "Out of Stock!";
   }
@@ -14,12 +15,12 @@ function PotionDetail(props) {
   let stockWarningColor = {
     color: "black"
   }
-  if (potion.stock === 0 || isNaN(potion.stock)) {
+  if (potionList[potion.id].stock === 0 || isNaN(potionList[potion.id].stock)) {
     lowStockDisplayWarning = null;
     stockWarningColor = {
       color: "darkred"
     }
-  } else if (potion.stock >= 10) {
+  } else if (potionList[potion.id].stock >= 10) {
     lowStockDisplayWarning = null;
   } else {
     lowStockDisplayWarning = "Almost Out!";
@@ -70,10 +71,19 @@ function PotionDetail(props) {
 
 PotionDetail.propTypes = {
   potion: PropTypes.object,
+  potionList: PropTypes.object,
   onClickingUpdate: PropTypes.func,
   onClickingDelete: PropTypes.func,
   onClickingBuy: PropTypes.func,
   onClickingRestock: PropTypes.func
 }
+
+const mapStateToProps = state => {
+  return {
+    potionList: state.potionList
+  }
+}
+
+PotionDetail = connect(mapStateToProps)(PotionDetail)
 
 export default PotionDetail;

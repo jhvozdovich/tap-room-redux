@@ -38,7 +38,6 @@ npm run start
 ### Known Bugs
 
 * Troubleshooting div wrapping within columns. Exploring flexbox in CSS.
-* Maintaining order after editing or updating potion.
 
 ### Support and Contact Information
 
@@ -81,7 +80,6 @@ _Have a bug or an issue with this application? [Open a new issue](https://github
 ### Resources
 * [Potion Images - Minecraft Sprites](https://minecraft.gamepedia.com/Potion#Potions_with_positive_effects)
 * [Background Image](https://wallpapercave.com/minecraft-background-free)
-
 
 #### License
 

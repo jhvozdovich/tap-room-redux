@@ -28,3 +28,19 @@ export const deletePotion = (id) => ({
   type: c.DELETE_POTION,
   id
 });
+
+export const selectPotion = (potion) => {
+  const { name, price, duration, effect, stock, img, order, key, id } = potion;
+  return {
+    type: c.SELECT_POTION,
+    name: name,
+    price: price,
+    duration: duration,
+    effect: effect,
+    stock: stock,
+    img: img,
+    order: order,
+    key: key,
+    id: id
+  }
+}

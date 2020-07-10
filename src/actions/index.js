@@ -30,17 +30,23 @@ export const deletePotion = (id) => ({
 });
 
 export const selectPotion = (potion) => {
-  const { name, price, duration, effect, stock, img, order, key, id } = potion;
-  return {
-    type: c.SELECT_POTION,
-    name: name,
-    price: price,
-    duration: duration,
-    effect: effect,
-    stock: stock,
-    img: img,
-    order: order,
-    key: key,
-    id: id
+  if (potion !== null) {
+    const { name, price, duration, effect, stock, img, order, key, id } = potion;
+    return {
+      type: c.SELECT_POTION,
+      name: name,
+      price: price,
+      duration: duration,
+      effect: effect,
+      stock: stock,
+      img: img,
+      order: order,
+      key: key,
+      id: id
+    }
+  } else {
+    return {
+      type: c.SELECT_POTION
+    }
   }
 }

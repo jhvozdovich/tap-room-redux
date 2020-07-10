@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 function PotionDetail(props) {
   const { potion, onClickingDelete, onClickingBuy, onClickingRestock, onClickingUpdate, potionList } = props;
   let stockDisplay;
-  if (potion.stock > 0) {
+  if (potionList[potion.id].stock > 0) {
     stockDisplay = potionList[potion.id].stock;
   } else {
     stockDisplay = "Out of Stock!";

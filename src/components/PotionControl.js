@@ -71,12 +71,10 @@ function PotionControl(props) {
 
   const handleRestockingPotion = (id) => {
     const restockedPotion = potionList[id];
-    if (restockedPotion.stock > 0) {
-      restockedPotion.stock += 10;
-      const { dispatch } = props;
-      const action = a.addPotion(restockedPotion);
-      dispatch(action);
-    }
+    restockedPotion.stock += 10;
+    const { dispatch } = props;
+    const action = a.addPotion(restockedPotion);
+    dispatch(action);
   }
 
   let currentlyVisibleState = null;

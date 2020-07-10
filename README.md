@@ -1,15 +1,15 @@
 # **Crafty Brew**
 
-### _React Fundamentals - Week 16 Project at Epicodus_
+### _React with Redux - Week 17 Project at Epicodus_
 
 #### Author: **Jessica Hvozdovich**
-#### July 2, 2020
+#### July 10, 2020
 
 ![Screenshot of Webpage](./public/CraftyBrewScreenshot.png)
 
 ### Description
 
-_This application serves as a potion tracking app for a local adventure shop to monitor their product storage. The site is Minecraft themed and image resources are listed below. Full CRUD functionality with React is achieved using functional and class components, local and shared state, JSX, and props with PropTypes._
+_This application serves as a potion tracking app for a local adventure shop to monitor their product storage. The site is Minecraft themed and image resources are listed below. Full CRUD functionality with React is achieved using functional and class components, local and shared state, JSX, and props with PropTypes. This app is a refactored version of [the original project](https://github.com/jhvozdovich/tap-room.git) to incorporate Redux. All state is now handled by Redux with thorough testing, action creators, and constants added._
 
 ### Instructions for use:
 
@@ -17,8 +17,8 @@ _This application serves as a potion tracking app for a local adventure shop to 
 2. To download the project Directory to your desktop enter the following commands:
 ```
 cd Desktop
-git clone https://github.com/jhvozdovich/tap-room.git
-cd tap-room
+git clone https://github.com/jhvozdovich/tap-room-redux.git
+cd tap-room-redux
 ```
 3. To view the downloaded files, open them in a text editor or IDE of your choice.
 * if you have VSCode for example, when your terminal is within the main project Directory you can open all of the files with the command:
@@ -37,20 +37,23 @@ npm run start
 
 ### Known Bugs
 
-* Troubleshooting div wrapping within columns. Exploring flexbox in css.
+* Troubleshooting div wrapping within columns. Exploring flexbox in CSS.
 * Maintaining order after editing or updating potion.
 
 ### Support and Contact Information
 
 Please contact me with any suggestions or questions at jhvozdovich@gmail.com. Thank you for your input!  
-_Have a bug or an issue with this application? [Open a new issue](https://github.com/jhvozdovich/tap-room/issues) here on GitHub._
+_Have a bug or an issue with this application? [Open a new issue](https://github.com/jhvozdovich/tap-room-redux/issues) here on GitHub._
 
 ### Technologies Used
 
 * React
+* Redux
 * JSX
 * JavaScript
+* Jest
 * HTML
+* CSS
 * Git and GitHub
 
 ### Project Structure

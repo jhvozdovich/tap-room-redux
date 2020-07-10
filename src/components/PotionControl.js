@@ -59,28 +59,25 @@ function PotionControl(props) {
     handleSelectedPotionRefresh()
   }
 
-  // const handleBuyingPotion = (id) => {
-  //   const purchasedPotion = props.potionList.filter(potion => potion.id === id)[0];
-  //   if (purchasedPotion.stock > 0) {
-  //     purchasedPotion.stock -= 1;
-  //     const updatedPotionList = props.potionList.filter(potion => potion.id !== props.selectedPotionVisible.id).concat(purchasedPotion);
-  //     const { dispatch } = props;
-  //     const action = a.addPotion();
-  //     dispatch(action);
-  // }
+  const handleBuyingPotion = (id) => {
+    const purchasedPotion = potionList[id];
+    if (purchasedPotion.stock > 0) {
+      purchasedPotion.stock -= 1;
+      const { dispatch } = props;
+      const action = a.addPotion(purchasedPotion);
+      dispatch(action);
+    }
+  }
 
-  // handleRestockingPotion = (id) => {
-  //   const restockedPotion = state.potionList.filter(potion => potion.id === id)[0];
-  //   if (isNaN(restockedPotion.stock)) {
-  //     restockedPotion.stock = 10;
-  //   } else {
-  //     restockedPotion.stock += 10;
-  //   }
-  //   const updatedPotionList = state.potionList.filter(potion => potion.id !== state.selectedPotionVisible.id).concat(restockedPotion);
-  //   setState({
-  //     potionList: updatedPotionList
-  //   });
-  // }
+  const handleRestockingPotion = (id) => {
+    const restockedPotion = potionList[id];
+    if (restockedPotion.stock > 0) {
+      restockedPotion.stock += 10;
+      const { dispatch } = props;
+      const action = a.addPotion(restockedPotion);
+      dispatch(action);
+    }
+  }
 
   let currentlyVisibleState = null;
   let navButton = null;
@@ -93,9 +90,9 @@ function PotionControl(props) {
     currentlyVisibleState = <PotionDetail
       potion={selectedPotionVisible}
       onClickingUpdate={handleUpdatingFormVisible}
-      onClickingDelete={handleDeletingPotion} />
-    // onClickingBuy={handleBuyingPotion}
-    // onClickingRestock={handleRestockingPotion} />
+      onClickingDelete={handleDeletingPotion}
+      onClickingBuy={handleBuyingPotion}
+      onClickingRestock={handleRestockingPotion} />
     navButton = <button onClick={handleSelectedPotionRefresh}>Back to List</button>
   } else if (creatingFormVisible) {
     currentlyVisibleState = <NewPotionForm onNewPotionCreation={handleAddingNewPotion} />
@@ -107,7 +104,6 @@ function PotionControl(props) {
     navButton = <button onClick={handleCreatingFormVisible}>Add Potion</button>
   }
 
-
   return (
     <React.Fragment>
       {currentlyVisibleState}
@@ -115,7 +111,6 @@ function PotionControl(props) {
     </React.Fragment>
   )
 }
-
 
 PotionControl.propTypes = {
   creatingFormVisible: PropTypes.bool,

@@ -3,6 +3,7 @@ import creatingFormVisibleReducer from "./../../reducers/creating-form-visible-r
 import potionListReducer from "./../../reducers/potion-list-reducer";
 import selectedPotionVisibleReducer from "./../../reducers/selected-potion-visible-reducer";
 import updatingFormVisibleReducer from "./../../reducers/updating-form-visible-reducer";
+import orderReducer from "./../../reducers/order-reducer";
 import rootReducer from "./../../reducers/index";
 import * as a from "./../../actions/index";
 
@@ -90,7 +91,8 @@ describe("rootReducer", () => {
       creatingFormVisible: false,
       potionList: defaultData,
       selectedPotionVisible: null,
-      updatingFormVisible: false
+      updatingFormVisible: false,
+      order: 6
     })
   })
 
@@ -108,6 +110,10 @@ describe("rootReducer", () => {
 
   test("initial selectedPotionVisibleReducer matches root reducer", () => {
     expect(store.getState().selectedPotionVisible).toEqual(selectedPotionVisibleReducer(undefined, { type: null }));
+  })
+
+  test("initial orderReducer matches root reducer", () => {
+    expect(store.getState().order).toEqual(orderReducer(undefined, { type: null }));
   })
 
   test("action and initial state of potionListReducer matches root reducer", () => {

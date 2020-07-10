@@ -2,6 +2,7 @@ import React from "react";
 import { v4 } from "uuid";
 import PropTypes from "prop-types";
 import ReusableForm from "./ReusableForm";
+import { connect } from "react-redux";
 
 
 function NewPotionForm(props) {
@@ -15,6 +16,7 @@ function NewPotionForm(props) {
         effect: event.target.effect.value,
         stock: parseInt(event.target.stock.value),
         img: event.target.img.value,
+        order: props.order + 1,
         id: v4()
       });
     }
@@ -32,5 +34,14 @@ function NewPotionForm(props) {
 NewPotionForm.propTypes = {
   onNewPotionCreation: PropTypes.func
 }
+
+const mapStateToProps = state => {
+  return {
+    order: state.order
+  }
+}
+
+NewPotionForm = connect(mapStateToProps)(NewPotionForm)
+
 
 export default NewPotionForm;

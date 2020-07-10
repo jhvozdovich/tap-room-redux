@@ -16,7 +16,6 @@ body {
   overflow: hidden;
 }
 
-
 button, input, select, textarea {
   font-family: 'Press Start 2P';
   padding: 10px;
@@ -30,7 +29,6 @@ button, input, select, textarea {
   column-rule: 5px solid rgba(0, 0, 0, 0.5);
   column-gap: 20px;
   column-fill: auto;
- 
 }
 
 .potion {

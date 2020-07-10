@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import ReusableForm from "./ReusableForm";
 import { connect } from "react-redux";
 
-
 function NewPotionForm(props) {
   function handleNewPotionForm(event) {
     if (event.target.name.value !== "") {
@@ -42,6 +41,5 @@ const mapStateToProps = state => {
 }
 
 NewPotionForm = connect(mapStateToProps)(NewPotionForm)
-
 
 export default NewPotionForm;

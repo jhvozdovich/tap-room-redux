@@ -1,6 +1,5 @@
 import potionListReducer from "../../reducers/potion-list-reducer";
 import * as a from "./../../actions/index";
-import * as c from "./../../actions/ActionTypes";
 
 import Indigo from "./../../img/Indigo.gif";
 import Purple from "./../../img/Purple.gif";

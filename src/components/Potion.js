@@ -24,11 +24,11 @@ function Potion(props) {
 
   return (
     <React.Fragment>
+      <br />
       <div className="potion" onClick={() => props.whenPotionClicked(props.id)}>
         <h4 style={stockWarningColor}>{props.name}</h4>
         <p>Price: {priceDisplay} Gold Ingots</p>
         <img className="potion-img" src={props.img} alt="potion gif" />
-
       </div>
     </React.Fragment>
   )

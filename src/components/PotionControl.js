@@ -84,7 +84,6 @@ function PotionControl(props) {
     dispatch(action);
   }
 
-
   let currentlyVisibleState = null;
   let navButton = null;
 

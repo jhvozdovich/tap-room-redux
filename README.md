@@ -75,7 +75,10 @@ _Have a bug or an issue with this application? [Open a new issue](https://github
 | **User can delete a potion** | User Input:"Click: Potion of Regeneration, Click: Delete" | Output: “Potion of Swiftness, Potion of Fire Resistance, Potion of Night Vision" |
 | **An "Almost Out of Stock" warning appears when stock is below 10** | User Input:"Stock: 10, Click: Buy" | Output: “Stock: 9 Almost Out!" |
 
-## Resources
+### Stretch Goals
+* Moment.js sale countdown
+
+### Resources
 * [Potion Images - Minecraft Sprites](https://minecraft.gamepedia.com/Potion#Potions_with_positive_effects)
 * [Background Image](https://wallpapercave.com/minecraft-background-free)
 

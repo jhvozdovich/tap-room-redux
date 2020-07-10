@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+
+body {
+  margin: 30px;
+  font-family: 'Press Start 2P';
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: url(./img/MinecraftBackground.jpg) no-repeat center center fixed; 
+}
+
+.text-background {
+  background-color: rgba(244, 234, 197, 0.5);
+  border: 5px solid rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  overflow: hidden;
+}
+
+
+button, input, select, textarea {
+  font-family: 'Press Start 2P';
+  padding: 10px;
+  margin: 10px;
+  border: 4px solid black;
+}
+
+.potion-list {
+  column-count: 3;
+  column-width: 200px;
+  column-rule: 5px solid rgba(0, 0, 0, 0.5);
+  column-gap: 20px;
+  column-fill: auto;
+ 
+}
+
+.potion {
+  break-inside: avoid;
+}
+
+.detail-page {
+  padding-left: 250px;
+  padding-right: 250px
+}
+
+h4 {
+  margin-block-start: 0em;
+}
+
+.potion-img {
+  margin-block-end: 1.33em;
+  width: 50px;
+}
+@media (max-width: 800px){
+  .potion-list {
+    column-count: 1;
+  }
+  .detail-page {
+    padding-left: 50px;
+    padding-right: 50px
+  }
+}

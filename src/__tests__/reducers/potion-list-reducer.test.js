@@ -10,7 +10,6 @@ import Lavendar from "./../../img/Lavendar.gif";
 import PaleGreen from "./../../img/PaleGreen.gif";
 
 describe("potionListReducer", () => {
-
   const defaultData = {
     0: {
       name: "Potion of Regeneration",
@@ -79,7 +78,52 @@ describe("potionListReducer", () => {
       id: "5"
     }
   }
+
+  const potionData = {
+    name: "Potion of Water Breathing",
+    price: 5,
+    duration: "3:00",
+    effect: "Prevents the oxygen bar from depleting when underwater.",
+    stock: 12,
+    img: Purple,
+    order: 6,
+    key: 6,
+    id: "6"
+  }
+
+  let action;
+
   test("returns default state if no action type is passed to reducer", () => {
     expect(potionListReducer(defaultData, { type: null })).toEqual(defaultData);
-  })
-})
+  });
+
+  test("should add new potion to potion list", () => {
+    const { name, price, duration, effect, stock, img, order, key, id } = potionData;
+    action = a.addPotion({
+      name: name,
+      price: price,
+      duration: duration,
+      effect: effect,
+      stock: stock,
+      img: img,
+      order: order,
+      key: key,
+      id: id
+    });
+
+    expect(potionListReducer({}, action)).toEqual({
+      [id]: {
+        name: name,
+        price: price,
+        duration: duration,
+        effect: effect,
+        stock: stock,
+        img: img,
+        order: order,
+        key: key,
+        id: id
+      }
+    });
+
+  });
+});

@@ -77,7 +77,22 @@ const defaultData = {
 }
 
 export default (state = defaultData, action) => {
+  const { name, price, duration, effect, stock, img, order, key, id } = action;
   switch (action.type) {
+    case c.ADD_POTION:
+      return Object.assign({}, state, {
+        [id]: {
+          name: name,
+          price: price,
+          duration: duration,
+          effect: effect,
+          stock: stock,
+          img: img,
+          order: order,
+          key: key,
+          id: id
+        }
+      });
     default:
       return state;
   }

@@ -160,4 +160,10 @@ describe("rootReducer", () => {
     store.dispatch(action);
     expect(store.getState().selectedPotionVisible).toEqual(selectedPotionVisibleReducer(undefined, action));
   })
+
+  test("action and initial state of increaseOrder matches root reducer", () => {
+    const action = a.increaseOrder();
+    store.dispatch(action);
+    expect(store.getState().order).toEqual(orderReducer(undefined, action));
+  })
 })

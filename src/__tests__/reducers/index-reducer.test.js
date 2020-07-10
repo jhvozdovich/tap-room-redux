@@ -93,4 +93,8 @@ describe("rootReducer", () => {
       updatingFormVisible: false
     })
   })
+
+  test("initial potionListReducer matches root reducer", () => {
+    expect(store.getState().potionList).toEqual(potionListReducer(undefined, { type: null }));
+  })
 })
